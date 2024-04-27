@@ -7,6 +7,8 @@ import java.util.Objects;
 @Table(name = "delivery", schema = "main", catalog = "")
 public class DeliveryEntity {
     private short deliveryId;
+    private short orderId;
+    private short courierId;
     private String dateArrived;
     private String taken;
     private String paymentMethod;
@@ -21,6 +23,15 @@ public class DeliveryEntity {
         this.deliveryId = deliveryId;
     }
 
+    @Column(name = "order_id")
+    public short getOrderId(){return orderId;}
+
+    public void setOrderId(short orderId){ this.orderId = orderId;}
+
+    @Column(name = "courier_id")
+    public short getCourierId(){return courierId;}
+
+    public void setCourierId(short courierId){ this.courierId = courierId;}
 
     @Column(name = "date_arrived")
     public String getDateArrived() {
@@ -56,12 +67,12 @@ public class DeliveryEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DeliveryEntity that = (DeliveryEntity) o;
-        return deliveryId == that.deliveryId && Objects.equals(dateArrived, that.dateArrived) && Objects.equals(taken, that.taken) && Objects.equals(paymentMethod, that.paymentMethod);
+        return deliveryId == that.deliveryId && Objects.equals(orderId, that.orderId) && Objects.equals(courierId, that.courierId) && Objects.equals(dateArrived, that.dateArrived) && Objects.equals(taken, that.taken) && Objects.equals(paymentMethod, that.paymentMethod);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(deliveryId, dateArrived, taken, paymentMethod);
+        return Objects.hash(deliveryId, orderId, courierId, dateArrived, taken, paymentMethod);
     }
 }
 
